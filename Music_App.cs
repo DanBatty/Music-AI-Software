@@ -1,8 +1,8 @@
 namespace Music_AI_Software
 {
-    public partial class Form1 : Form
+    public partial class Music_App : Form
     {
-        public Form1()
+        public Music_App()
         {
             InitializeComponent();
         }
