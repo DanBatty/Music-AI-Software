@@ -42,19 +42,27 @@
             listSongs = new ListBox();
             panel4 = new Panel();
             panelTrack1 = new Panel();
+            trackPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             panel5 = new Panel();
+            lblTrackEnd = new Label();
+            labelTrackStart = new Label();
+            progressBar1 = new ProgressBar();
             btnPlay = new Button();
-            toolStrip1 = new ToolStrip();
-            toolStripButton1 = new ToolStripButton();
-            toolStripButton2 = new ToolStripButton();
-            toolStripButton3 = new ToolStripButton();
             panelTrack2 = new Panel();
             panel6 = new Panel();
-            panel7 = new Panel();
-            trackBar1 = new TrackBar();
-            trackBar2 = new TrackBar();
-            trackBar3 = new TrackBar();
+            lblLow = new Label();
+            lblMid = new Label();
+            lblHi = new Label();
+            lblVolume = new Label();
             trackBar4 = new TrackBar();
+            trackBar3 = new TrackBar();
+            trackBar2 = new TrackBar();
+            trackBar1 = new TrackBar();
+            panel7 = new Panel();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
             trackBar5 = new TrackBar();
             trackBar6 = new TrackBar();
             trackBar7 = new TrackBar();
@@ -62,14 +70,14 @@
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackPlayer).BeginInit();
             panel5.SuspendLayout();
-            toolStrip1.SuspendLayout();
             panel6.SuspendLayout();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
+            panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar7).BeginInit();
@@ -159,6 +167,7 @@
             listSongs.Name = "listSongs";
             listSongs.Size = new Size(381, 257);
             listSongs.TabIndex = 0;
+            listSongs.SelectedIndexChanged += listSongs_SelectedIndexChanged;
             // 
             // panel4
             // 
@@ -170,16 +179,28 @@
             // 
             // panelTrack1
             // 
+            panelTrack1.Controls.Add(trackPlayer);
             panelTrack1.Controls.Add(panel5);
-            panelTrack1.Controls.Add(toolStrip1);
             panelTrack1.Dock = DockStyle.Left;
             panelTrack1.Location = new Point(0, 184);
             panelTrack1.Name = "panelTrack1";
             panelTrack1.Size = new Size(550, 206);
             panelTrack1.TabIndex = 7;
             // 
+            // trackPlayer
+            // 
+            trackPlayer.Enabled = true;
+            trackPlayer.Location = new Point(12, 6);
+            trackPlayer.Name = "trackPlayer";
+            trackPlayer.OcxState = (AxHost.State)resources.GetObject("trackPlayer.OcxState");
+            trackPlayer.Size = new Size(528, 131);
+            trackPlayer.TabIndex = 5;
+            // 
             // panel5
             // 
+            panel5.Controls.Add(lblTrackEnd);
+            panel5.Controls.Add(labelTrackStart);
+            panel5.Controls.Add(progressBar1);
             panel5.Controls.Add(btnPlay);
             panel5.Dock = DockStyle.Bottom;
             panel5.Location = new Point(0, 146);
@@ -187,48 +208,40 @@
             panel5.Size = new Size(550, 60);
             panel5.TabIndex = 4;
             // 
+            // lblTrackEnd
+            // 
+            lblTrackEnd.AutoSize = true;
+            lblTrackEnd.Location = new Point(512, 7);
+            lblTrackEnd.Name = "lblTrackEnd";
+            lblTrackEnd.Size = new Size(28, 15);
+            lblTrackEnd.TabIndex = 5;
+            lblTrackEnd.Text = "0.00";
+            // 
+            // labelTrackStart
+            // 
+            labelTrackStart.AutoSize = true;
+            labelTrackStart.Location = new Point(12, 6);
+            labelTrackStart.Name = "labelTrackStart";
+            labelTrackStart.Size = new Size(28, 15);
+            labelTrackStart.TabIndex = 4;
+            labelTrackStart.Text = "0.00";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(46, 11);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(453, 10);
+            progressBar1.TabIndex = 3;
+            // 
             // btnPlay
             // 
-            btnPlay.Location = new Point(234, 16);
+            btnPlay.Location = new Point(234, 31);
             btnPlay.Name = "btnPlay";
             btnPlay.Size = new Size(75, 23);
             btnPlay.TabIndex = 2;
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = true;
             btnPlay.Click += btnPlay_Click;
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripButton2, toolStripButton3 });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(550, 25);
-            toolStrip1.TabIndex = 1;
-            toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(23, 22);
-            toolStripButton1.Text = "toolStripButton1";
-            // 
-            // toolStripButton2
-            // 
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(23, 22);
-            toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(23, 22);
-            toolStripButton3.Text = "toolStripButton3";
             // 
             // panelTrack2
             // 
@@ -240,6 +253,10 @@
             // 
             // panel6
             // 
+            panel6.Controls.Add(lblLow);
+            panel6.Controls.Add(lblMid);
+            panel6.Controls.Add(lblHi);
+            panel6.Controls.Add(lblVolume);
             panel6.Controls.Add(trackBar4);
             panel6.Controls.Add(trackBar3);
             panel6.Controls.Add(trackBar2);
@@ -250,8 +267,77 @@
             panel6.Size = new Size(81, 206);
             panel6.TabIndex = 9;
             // 
+            // lblLow
+            // 
+            lblLow.AutoSize = true;
+            lblLow.Location = new Point(28, 187);
+            lblLow.Name = "lblLow";
+            lblLow.Size = new Size(29, 15);
+            lblLow.TabIndex = 7;
+            lblLow.Text = "Low";
+            // 
+            // lblMid
+            // 
+            lblMid.AutoSize = true;
+            lblMid.Location = new Point(28, 136);
+            lblMid.Name = "lblMid";
+            lblMid.Size = new Size(28, 15);
+            lblMid.TabIndex = 6;
+            lblMid.Text = "Mid";
+            // 
+            // lblHi
+            // 
+            lblHi.AutoSize = true;
+            lblHi.Location = new Point(31, 85);
+            lblHi.Name = "lblHi";
+            lblHi.Size = new Size(19, 15);
+            lblHi.TabIndex = 5;
+            lblHi.Text = "Hi";
+            // 
+            // lblVolume
+            // 
+            lblVolume.AutoSize = true;
+            lblVolume.Location = new Point(18, 35);
+            lblVolume.Name = "lblVolume";
+            lblVolume.Size = new Size(47, 15);
+            lblVolume.TabIndex = 4;
+            lblVolume.Text = "Volume";
+            // 
+            // trackBar4
+            // 
+            trackBar4.Location = new Point(3, 55);
+            trackBar4.Name = "trackBar4";
+            trackBar4.Size = new Size(75, 45);
+            trackBar4.TabIndex = 3;
+            // 
+            // trackBar3
+            // 
+            trackBar3.Location = new Point(3, 106);
+            trackBar3.Name = "trackBar3";
+            trackBar3.Size = new Size(75, 45);
+            trackBar3.TabIndex = 2;
+            trackBar3.Scroll += trackBar3_Scroll;
+            // 
+            // trackBar2
+            // 
+            trackBar2.Location = new Point(3, 157);
+            trackBar2.Name = "trackBar2";
+            trackBar2.Size = new Size(75, 45);
+            trackBar2.TabIndex = 1;
+            // 
+            // trackBar1
+            // 
+            trackBar1.Location = new Point(3, 5);
+            trackBar1.Name = "trackBar1";
+            trackBar1.Size = new Size(75, 45);
+            trackBar1.TabIndex = 0;
+            // 
             // panel7
             // 
+            panel7.Controls.Add(label2);
+            panel7.Controls.Add(label3);
+            panel7.Controls.Add(label4);
+            panel7.Controls.Add(label5);
             panel7.Controls.Add(trackBar5);
             panel7.Controls.Add(trackBar6);
             panel7.Controls.Add(trackBar7);
@@ -262,34 +348,41 @@
             panel7.Size = new Size(81, 206);
             panel7.TabIndex = 10;
             // 
-            // trackBar1
+            // label2
             // 
-            trackBar1.Location = new Point(3, 5);
-            trackBar1.Name = "trackBar1";
-            trackBar1.Size = new Size(75, 45);
-            trackBar1.TabIndex = 0;
+            label2.AutoSize = true;
+            label2.Location = new Point(27, 187);
+            label2.Name = "label2";
+            label2.Size = new Size(29, 15);
+            label2.TabIndex = 11;
+            label2.Text = "Low";
             // 
-            // trackBar2
+            // label3
             // 
-            trackBar2.Location = new Point(3, 157);
-            trackBar2.Name = "trackBar2";
-            trackBar2.Size = new Size(75, 45);
-            trackBar2.TabIndex = 1;
+            label3.AutoSize = true;
+            label3.Location = new Point(27, 136);
+            label3.Name = "label3";
+            label3.Size = new Size(28, 15);
+            label3.TabIndex = 10;
+            label3.Text = "Mid";
             // 
-            // trackBar3
+            // label4
             // 
-            trackBar3.Location = new Point(3, 106);
-            trackBar3.Name = "trackBar3";
-            trackBar3.Size = new Size(75, 45);
-            trackBar3.TabIndex = 2;
-            trackBar3.Scroll += trackBar3_Scroll;
+            label4.AutoSize = true;
+            label4.Location = new Point(30, 85);
+            label4.Name = "label4";
+            label4.Size = new Size(19, 15);
+            label4.TabIndex = 9;
+            label4.Text = "Hi";
             // 
-            // trackBar4
+            // label5
             // 
-            trackBar4.Location = new Point(3, 55);
-            trackBar4.Name = "trackBar4";
-            trackBar4.Size = new Size(75, 45);
-            trackBar4.TabIndex = 3;
+            label5.AutoSize = true;
+            label5.Location = new Point(17, 35);
+            label5.Name = "label5";
+            label5.Size = new Size(47, 15);
+            label5.TabIndex = 8;
+            label5.Text = "Volume";
             // 
             // trackBar5
             // 
@@ -347,18 +440,17 @@
             menuStrip1.PerformLayout();
             panel3.ResumeLayout(false);
             panelTrack1.ResumeLayout(false);
-            panelTrack1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackPlayer).EndInit();
             panel5.ResumeLayout(false);
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
+            panel5.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackBar4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)trackBar4).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar5).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar6).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar7).EndInit();
@@ -382,10 +474,6 @@
         private Panel panelTrack1;
         private Panel panelTrack2;
         private ListBox listSongs;
-        private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
         private Button btnPlay;
         private Panel panel5;
         private Panel panel6;
@@ -398,5 +486,17 @@
         private TrackBar trackBar6;
         private TrackBar trackBar7;
         private TrackBar trackBar8;
+        private Label lblTrackEnd;
+        private Label labelTrackStart;
+        private ProgressBar progressBar1;
+        private AxWMPLib.AxWindowsMediaPlayer trackPlayer;
+        private Label lblHi;
+        private Label lblVolume;
+        private Label lblLow;
+        private Label lblMid;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
     }
 }
