@@ -11,5 +11,15 @@ namespace Music_AI_Software
         {
 
         }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+
+        }
     }
 }
