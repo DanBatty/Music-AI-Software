@@ -6,5 +6,10 @@ namespace Music_AI_Software
         {
             InitializeComponent();
         }
+
+        private void trackMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
