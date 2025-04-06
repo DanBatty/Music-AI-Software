@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace Music_AI_Software.Interfaces
 {
+    // Event args for playback progress
+    public class PlaybackProgressEventArgs : EventArgs
+    {
+        public double CurrentPosition { get; set; }
+        public double Duration { get; set; }
+    }
     public interface IAudioPlayer
     {
+        void Play(string filePath);
+        void Pause();
+        void Stop();
+        void SetVolume(int volume);
 
+        event EventHandler<PlaybackProgressEventArgs> PlaybackProgress;
     }
+
 
     // UI Scaling interface
     public interface IScalableControl
@@ -18,4 +30,3 @@ namespace Music_AI_Software.Interfaces
         void Scale(float widthRatio, float heightRatio);
     }
 }
-

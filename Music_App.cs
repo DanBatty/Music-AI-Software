@@ -1,5 +1,7 @@
 namespace Music_AI_Software
 {
+    using Music_AI_Software.Interfaces;
+    using Music_AI_Software.UI;
     public partial class Music_App : Form
     {
         private float originalWidth;

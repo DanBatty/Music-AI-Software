@@ -12,7 +12,7 @@ namespace Music_AI_Software.UI
     public class ScalableControl : Control, IScalableControl
     {
         public void StoreOriginalDimensions()
-        {
+    {
             throw new NotImplementedException();
         }
     }
