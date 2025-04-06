@@ -112,7 +112,7 @@
             trackMenuItem.Name = "trackMenuItem";
             trackMenuItem.Size = new Size(107, 22);
             trackMenuItem.Text = "Track";
-            trackMenuItem.Click += trackMenuItem_Click;
+            trackMenuItem.Click += this.trackMenuItem_Click;
             // 
             // folderMenuItem
             // 
@@ -170,7 +170,7 @@
             listSongs.Name = "listSongs";
             listSongs.Size = new Size(381, 257);
             listSongs.TabIndex = 0;
-            listSongs.SelectedIndexChanged += listSongs_SelectedIndexChanged;
+            listSongs.SelectedIndexChanged += this.listSongs_SelectedIndexChanged;
             // 
             // panel4
             // 
@@ -248,7 +248,7 @@
             btnPlay.TabIndex = 2;
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = true;
-            btnPlay.Click += btnPlay_Click;
+            btnPlay.Click += this.btnPlay_Click;
             // 
             // panel6
             // 
@@ -444,7 +444,7 @@
             Name = "Music_App";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Music App";
-            Load += Music_App_Load;
+            Load += this.Music_App_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel3.ResumeLayout(false);
