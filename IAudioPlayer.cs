@@ -12,16 +12,18 @@ namespace Music_AI_Software.Interfaces
         public double CurrentPosition { get; set; }
         public double Duration { get; set; }
     }
+
     public interface IAudioPlayer
     {
         void Play(string filePath);
         void Pause();
         void Stop();
         void SetVolume(int volume);
-
+        double CurrentPosition { get; }
+        double Duration { get; }
+        bool IsPlaying { get; }
         event EventHandler<PlaybackProgressEventArgs> PlaybackProgress;
     }
-
 
     // UI Scaling interface
     public interface IScalableControl
