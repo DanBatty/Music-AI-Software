@@ -48,7 +48,6 @@
             labelTrackStart = new Label();
             progressBar1 = new ProgressBar();
             btnPlay = new Button();
-            panelTrack2 = new Panel();
             panel6 = new Panel();
             lblLow = new Label();
             lblMid = new Label();
@@ -67,6 +66,7 @@
             sliderMid2 = new TrackBar();
             sliderLow2 = new TrackBar();
             sliderVolume2 = new TrackBar();
+            panelTrack2 = new Panel();
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
@@ -250,15 +250,6 @@
             btnPlay.UseVisualStyleBackColor = true;
             btnPlay.Click += btnPlay_Click;
             // 
-            // panelTrack2
-            // 
-            panelTrack2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panelTrack2.AutoSize = true;
-            panelTrack2.Location = new Point(714, 184);
-            panelTrack2.Name = "panelTrack2";
-            panelTrack2.Size = new Size(550, 206);
-            panelTrack2.TabIndex = 8;
-            // 
             // panel6
             // 
             panel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -425,6 +416,14 @@
             sliderVolume2.Size = new Size(75, 45);
             sliderVolume2.TabIndex = 4;
             // 
+            // panelTrack2
+            // 
+            panelTrack2.AutoSize = true;
+            panelTrack2.Location = new Point(714, 184);
+            panelTrack2.Name = "panelTrack2";
+            panelTrack2.Size = new Size(550, 206);
+            panelTrack2.TabIndex = 8;
+            // 
             // Music_App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -483,7 +482,6 @@
         private Panel panel3;
         private Panel panel4;
         private Panel panelTrack1;
-        private Panel panelTrack2;
         private ListBox listSongs;
         private Button btnPlay;
         private Panel panel5;
@@ -509,5 +507,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private Panel panelTrack2;
     }
 }
