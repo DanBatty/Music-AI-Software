@@ -24,11 +24,4 @@ namespace Music_AI_Software.Interfaces
         bool IsPlaying { get; }
         event EventHandler<PlaybackProgressEventArgs> PlaybackProgress;
     }
-
-    // UI Scaling interface
-    public interface IScalableControl
-    {
-        void StoreOriginalDimensions();
-        void Scale(float widthRatio, float heightRatio);
-    }
 }
