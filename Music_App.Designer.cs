@@ -37,17 +37,19 @@
             viewItem = new ToolStripMenuItem();
             fullscreenMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
+            pictureTimeline1 = new PictureBox();
             panel2 = new Panel();
+            pictureTimeline2 = new PictureBox();
             panel3 = new Panel();
             listSongs = new ListBox();
             panel4 = new Panel();
             panelTrack1 = new Panel();
             trackPlayer = new AxWMPLib.AxWindowsMediaPlayer();
-            panel5 = new Panel();
-            lblTrackEnd = new Label();
-            labelTrackStart = new Label();
+            panelTrackControls1 = new Panel();
+            lblTrackEnd1 = new Label();
+            labelTrackStart1 = new Label();
             progressBar1 = new ProgressBar();
-            btnPlay = new Button();
+            btnPlay1 = new Button();
             panel6 = new Panel();
             lblLow = new Label();
             lblMid = new Label();
@@ -67,15 +69,21 @@
             sliderLow2 = new TrackBar();
             sliderVolume2 = new TrackBar();
             panelTrack2 = new Panel();
-            pictureTimeline1 = new PictureBox();
-            pictureTimeline2 = new PictureBox();
+            trackPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
+            panelTrackControls2 = new Panel();
+            lblTrackEnd2 = new Label();
+            labelTrackStart2 = new Label();
+            progressBar2 = new ProgressBar();
+            btnPlay2 = new Button();
             menuStrip1.SuspendLayout();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).BeginInit();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackPlayer).BeginInit();
-            panel5.SuspendLayout();
+            panelTrackControls1.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)sliderHi1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sliderMid1).BeginInit();
@@ -86,8 +94,9 @@
             ((System.ComponentModel.ISupportInitialize)sliderMid2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sliderLow2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sliderVolume2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).BeginInit();
+            panelTrack2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trackPlayer2).BeginInit();
+            panelTrackControls2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -149,6 +158,15 @@
             panel1.Size = new Size(1264, 80);
             panel1.TabIndex = 3;
             // 
+            // pictureTimeline1
+            // 
+            pictureTimeline1.Dock = DockStyle.Fill;
+            pictureTimeline1.Location = new Point(0, 0);
+            pictureTimeline1.Name = "pictureTimeline1";
+            pictureTimeline1.Size = new Size(1264, 80);
+            pictureTimeline1.TabIndex = 0;
+            pictureTimeline1.TabStop = false;
+            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -158,6 +176,15 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1264, 80);
             panel2.TabIndex = 4;
+            // 
+            // pictureTimeline2
+            // 
+            pictureTimeline2.Dock = DockStyle.Fill;
+            pictureTimeline2.Location = new Point(0, 0);
+            pictureTimeline2.Name = "pictureTimeline2";
+            pictureTimeline2.Size = new Size(1264, 80);
+            pictureTimeline2.TabIndex = 0;
+            pictureTimeline2.TabStop = false;
             // 
             // panel3
             // 
@@ -194,7 +221,7 @@
             panelTrack1.AllowDrop = true;
             panelTrack1.AutoSize = true;
             panelTrack1.Controls.Add(trackPlayer);
-            panelTrack1.Controls.Add(panel5);
+            panelTrack1.Controls.Add(panelTrackControls1);
             panelTrack1.Location = new Point(0, 184);
             panelTrack1.Name = "panelTrack1";
             panelTrack1.Size = new Size(550, 206);
@@ -210,36 +237,36 @@
             trackPlayer.Size = new Size(528, 131);
             trackPlayer.TabIndex = 5;
             // 
-            // panel5
+            // panelTrackControls1
             // 
-            panel5.AutoSize = true;
-            panel5.Controls.Add(lblTrackEnd);
-            panel5.Controls.Add(labelTrackStart);
-            panel5.Controls.Add(progressBar1);
-            panel5.Controls.Add(btnPlay);
-            panel5.Dock = DockStyle.Bottom;
-            panel5.Location = new Point(0, 147);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(550, 59);
-            panel5.TabIndex = 4;
+            panelTrackControls1.AutoSize = true;
+            panelTrackControls1.Controls.Add(lblTrackEnd1);
+            panelTrackControls1.Controls.Add(labelTrackStart1);
+            panelTrackControls1.Controls.Add(progressBar1);
+            panelTrackControls1.Controls.Add(btnPlay1);
+            panelTrackControls1.Dock = DockStyle.Bottom;
+            panelTrackControls1.Location = new Point(0, 147);
+            panelTrackControls1.Name = "panelTrackControls1";
+            panelTrackControls1.Size = new Size(550, 59);
+            panelTrackControls1.TabIndex = 4;
             // 
-            // lblTrackEnd
+            // lblTrackEnd1
             // 
-            lblTrackEnd.AutoSize = true;
-            lblTrackEnd.Location = new Point(512, 7);
-            lblTrackEnd.Name = "lblTrackEnd";
-            lblTrackEnd.Size = new Size(28, 15);
-            lblTrackEnd.TabIndex = 5;
-            lblTrackEnd.Text = "0.00";
+            lblTrackEnd1.AutoSize = true;
+            lblTrackEnd1.Location = new Point(512, 7);
+            lblTrackEnd1.Name = "lblTrackEnd1";
+            lblTrackEnd1.Size = new Size(28, 15);
+            lblTrackEnd1.TabIndex = 5;
+            lblTrackEnd1.Text = "0.00";
             // 
-            // labelTrackStart
+            // labelTrackStart1
             // 
-            labelTrackStart.AutoSize = true;
-            labelTrackStart.Location = new Point(12, 6);
-            labelTrackStart.Name = "labelTrackStart";
-            labelTrackStart.Size = new Size(28, 15);
-            labelTrackStart.TabIndex = 4;
-            labelTrackStart.Text = "0.00";
+            labelTrackStart1.AutoSize = true;
+            labelTrackStart1.Location = new Point(12, 6);
+            labelTrackStart1.Name = "labelTrackStart1";
+            labelTrackStart1.Size = new Size(28, 15);
+            labelTrackStart1.TabIndex = 4;
+            labelTrackStart1.Text = "0.00";
             // 
             // progressBar1
             // 
@@ -248,16 +275,16 @@
             progressBar1.Size = new Size(453, 10);
             progressBar1.TabIndex = 3;
             // 
-            // btnPlay
+            // btnPlay1
             // 
-            btnPlay.AutoSize = true;
-            btnPlay.Location = new Point(234, 31);
-            btnPlay.Name = "btnPlay";
-            btnPlay.Size = new Size(75, 25);
-            btnPlay.TabIndex = 2;
-            btnPlay.Text = "Play";
-            btnPlay.UseVisualStyleBackColor = true;
-            btnPlay.Click += btnPlay_Click;
+            btnPlay1.AutoSize = true;
+            btnPlay1.Location = new Point(234, 31);
+            btnPlay1.Name = "btnPlay1";
+            btnPlay1.Size = new Size(75, 25);
+            btnPlay1.TabIndex = 2;
+            btnPlay1.Text = "Play";
+            btnPlay1.UseVisualStyleBackColor = true;
+            btnPlay1.Click += btnPlay1_Click;
             // 
             // panel6
             // 
@@ -397,7 +424,7 @@
             // 
             sliderHi2.Location = new Point(3, 55);
             sliderHi2.Name = "sliderHi2";
-            sliderHi2.RightToLeft = RightToLeft.Yes;
+            sliderHi2.RightToLeft = RightToLeft.No;
             sliderHi2.Size = new Size(75, 45);
             sliderHi2.TabIndex = 7;
             // 
@@ -405,7 +432,7 @@
             // 
             sliderMid2.Location = new Point(3, 106);
             sliderMid2.Name = "sliderMid2";
-            sliderMid2.RightToLeft = RightToLeft.Yes;
+            sliderMid2.RightToLeft = RightToLeft.No;
             sliderMid2.Size = new Size(75, 45);
             sliderMid2.TabIndex = 6;
             // 
@@ -413,7 +440,7 @@
             // 
             sliderLow2.Location = new Point(3, 157);
             sliderLow2.Name = "sliderLow2";
-            sliderLow2.RightToLeft = RightToLeft.Yes;
+            sliderLow2.RightToLeft = RightToLeft.No;
             sliderLow2.Size = new Size(75, 45);
             sliderLow2.TabIndex = 5;
             // 
@@ -421,35 +448,76 @@
             // 
             sliderVolume2.Location = new Point(3, 5);
             sliderVolume2.Name = "sliderVolume2";
-            sliderVolume2.RightToLeft = RightToLeft.Yes;
             sliderVolume2.Size = new Size(75, 45);
             sliderVolume2.TabIndex = 4;
             // 
             // panelTrack2
             // 
             panelTrack2.AutoSize = true;
+            panelTrack2.Controls.Add(trackPlayer2);
+            panelTrack2.Controls.Add(panelTrackControls2);
             panelTrack2.Location = new Point(714, 184);
             panelTrack2.Name = "panelTrack2";
             panelTrack2.Size = new Size(550, 206);
             panelTrack2.TabIndex = 8;
             // 
-            // pictureTimeline1
+            // trackPlayer2
             // 
-            pictureTimeline1.Dock = DockStyle.Fill;
-            pictureTimeline1.Location = new Point(0, 0);
-            pictureTimeline1.Name = "pictureTimeline1";
-            pictureTimeline1.Size = new Size(1264, 80);
-            pictureTimeline1.TabIndex = 0;
-            pictureTimeline1.TabStop = false;
+            trackPlayer2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            trackPlayer2.Enabled = true;
+            trackPlayer2.Location = new Point(12, 3);
+            trackPlayer2.Name = "trackPlayer2";
+            trackPlayer2.OcxState = (AxHost.State)resources.GetObject("trackPlayer2.OcxState");
+            trackPlayer2.Size = new Size(528, 131);
+            trackPlayer2.TabIndex = 7;
             // 
-            // pictureTimeline2
+            // panelTrackControls2
             // 
-            pictureTimeline2.Dock = DockStyle.Fill;
-            pictureTimeline2.Location = new Point(0, 0);
-            pictureTimeline2.Name = "pictureTimeline2";
-            pictureTimeline2.Size = new Size(1264, 80);
-            pictureTimeline2.TabIndex = 0;
-            pictureTimeline2.TabStop = false;
+            panelTrackControls2.AutoSize = true;
+            panelTrackControls2.Controls.Add(lblTrackEnd2);
+            panelTrackControls2.Controls.Add(labelTrackStart2);
+            panelTrackControls2.Controls.Add(progressBar2);
+            panelTrackControls2.Controls.Add(btnPlay2);
+            panelTrackControls2.Dock = DockStyle.Bottom;
+            panelTrackControls2.Location = new Point(0, 147);
+            panelTrackControls2.Name = "panelTrackControls2";
+            panelTrackControls2.Size = new Size(550, 59);
+            panelTrackControls2.TabIndex = 6;
+            // 
+            // lblTrackEnd2
+            // 
+            lblTrackEnd2.AutoSize = true;
+            lblTrackEnd2.Location = new Point(512, 7);
+            lblTrackEnd2.Name = "lblTrackEnd2";
+            lblTrackEnd2.Size = new Size(28, 15);
+            lblTrackEnd2.TabIndex = 5;
+            lblTrackEnd2.Text = "0.00";
+            // 
+            // labelTrackStart2
+            // 
+            labelTrackStart2.AutoSize = true;
+            labelTrackStart2.Location = new Point(12, 6);
+            labelTrackStart2.Name = "labelTrackStart2";
+            labelTrackStart2.Size = new Size(28, 15);
+            labelTrackStart2.TabIndex = 4;
+            labelTrackStart2.Text = "0.00";
+            // 
+            // progressBar2
+            // 
+            progressBar2.Location = new Point(46, 11);
+            progressBar2.Name = "progressBar2";
+            progressBar2.Size = new Size(453, 10);
+            progressBar2.TabIndex = 3;
+            // 
+            // btnPlay2
+            // 
+            btnPlay2.AutoSize = true;
+            btnPlay2.Location = new Point(234, 31);
+            btnPlay2.Name = "btnPlay2";
+            btnPlay2.Size = new Size(75, 25);
+            btnPlay2.TabIndex = 2;
+            btnPlay2.Text = "Play";
+            btnPlay2.UseVisualStyleBackColor = true;
             // 
             // Music_App
             // 
@@ -475,13 +543,15 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).EndInit();
             panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).EndInit();
             panel3.ResumeLayout(false);
             panelTrack1.ResumeLayout(false);
             panelTrack1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackPlayer).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
+            panelTrackControls1.ResumeLayout(false);
+            panelTrackControls1.PerformLayout();
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sliderHi1).EndInit();
@@ -494,8 +564,11 @@
             ((System.ComponentModel.ISupportInitialize)sliderMid2).EndInit();
             ((System.ComponentModel.ISupportInitialize)sliderLow2).EndInit();
             ((System.ComponentModel.ISupportInitialize)sliderVolume2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).EndInit();
+            panelTrack2.ResumeLayout(false);
+            panelTrack2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trackPlayer2).EndInit();
+            panelTrackControls2.ResumeLayout(false);
+            panelTrackControls2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -514,8 +587,8 @@
         private Panel panel4;
         private Panel panelTrack1;
         private ListBox listSongs;
-        private Button btnPlay;
-        private Panel panel5;
+        private Button btnPlay1;
+        private Panel panelTrackControls1;
         private Panel panel6;
         private TrackBar sliderVolume1;
         private Panel panel7;
@@ -526,8 +599,8 @@
         private TrackBar sliderMid2;
         private TrackBar sliderLow2;
         private TrackBar sliderVolume2;
-        private Label lblTrackEnd;
-        private Label labelTrackStart;
+        private Label lblTrackEnd1;
+        private Label labelTrackStart1;
         private ProgressBar progressBar1;
         private AxWMPLib.AxWindowsMediaPlayer trackPlayer;
         private Label lblHi;
@@ -541,5 +614,11 @@
         private Panel panelTrack2;
         private PictureBox pictureTimeline1;
         private PictureBox pictureTimeline2;
+        private AxWMPLib.AxWindowsMediaPlayer trackPlayer2;
+        private Panel panelTrackControls2;
+        private Label lblTrackEnd2;
+        private Label labelTrackStart2;
+        private ProgressBar progressBar2;
+        private Button btnPlay2;
     }
 }

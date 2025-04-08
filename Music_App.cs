@@ -13,7 +13,8 @@ namespace Music_AI_Software
     /// </summary>
     public partial class Music_App : Form
     {
-        private IAudioPlayer audioPlayer;
+        private IAudioPlayer audioPlayer1;
+        private IAudioPlayer audioPlayer2;
 
         private FormScaler formScaler;
 
@@ -29,14 +30,19 @@ namespace Music_AI_Software
 
             formScaler = new FormScaler(this);
 
-            audioPlayer = new WmpAudioPlayer(trackPlayer);
+            audioPlayer1 = new WmpAudioPlayer(trackPlayer);
+            audioPlayer2 = new WmpAudioPlayer(trackPlayer2);
 
-            audioPlayer.PlaybackProgress += AudioPlayer_PlaybackProgress;
+            audioPlayer1.PlaybackProgress += AudioPlayer1_PlaybackProgress;
+            audioPlayer2.PlaybackProgress += AudioPlayer2_PlaybackProgress;
 
             sliderVolume1.ValueChanged += SliderVolume1_ValueChanged;
             sliderVolume2.ValueChanged += SliderVolume2_ValueChanged;
 
             SetupDragAndDrop();
+
+            btnPlay1.Click += btnPlay1_Click;
+            btnPlay2.Click += btnPlay2_Click;
         }
 
         /// <summary>
@@ -44,7 +50,7 @@ namespace Music_AI_Software
         /// </summary>
         private void SliderVolume1_ValueChanged(object sender, EventArgs e)
         {
-            audioPlayer.SetVolume(sliderVolume1.Value);
+            audioPlayer1.SetVolume(sliderVolume1.Value);
         }
 
         /// <summary>
@@ -52,37 +58,52 @@ namespace Music_AI_Software
         /// </summary>
         private void SliderVolume2_ValueChanged(object sender, EventArgs e)
         {
-
+            audioPlayer2.SetVolume(sliderVolume2.Value);
         }
 
         /// <summary>
-        /// Playback progress handler which updates from the audio player. Updates the UI with current playback position/duration.
+        /// Playback progress handler for player 1
         /// </summary>
-        private void AudioPlayer_PlaybackProgress(object sender, PlaybackProgressEventArgs e)
+        private void AudioPlayer1_PlaybackProgress(object sender, PlaybackProgressEventArgs e)
+        {
+            if (this.InvokeRequired)
+            {
+                this.BeginInvoke(new Action(() => UpdatePlaybackUI1(e)));
+            }
+            else
+            {
+                UpdatePlaybackUI1(e);
+            }
+        }
+
+        /// <summary>
+        /// Playback progress handler for player 2
+        /// </summary>
+        private void AudioPlayer2_PlaybackProgress(object sender, PlaybackProgressEventArgs e)
         {
             // Handle cross-thread UI updates
             if (this.InvokeRequired)
             {
-                this.BeginInvoke(new Action(() => UpdatePlaybackUI(e)));
+                this.BeginInvoke(new Action(() => UpdatePlaybackUI2(e)));
             }
             else
             {
-                UpdatePlaybackUI(e);
+                UpdatePlaybackUI2(e);
             }
         }
 
         /// <summary>
-        /// Updates the UI with current playback information.
+        /// Updates the player 1 UI with current playback information.
         /// </summary>
         /// <param name="e">Event args containing playback position/duration</param>
-        private void UpdatePlaybackUI(PlaybackProgressEventArgs e)
+        private void UpdatePlaybackUI1(PlaybackProgressEventArgs e)
         {
             // Format times as mm:ss
             TimeSpan currentTime = TimeSpan.FromSeconds(e.CurrentPosition);
             TimeSpan totalTime = TimeSpan.FromSeconds(e.Duration);
 
-            labelTrackStart.Text = $"{currentTime.Minutes:D2}:{currentTime.Seconds:D2}";
-            lblTrackEnd.Text = $"{totalTime.Minutes:D2}:{totalTime.Seconds:D2}";
+            labelTrackStart1.Text = $"{currentTime.Minutes:D2}:{currentTime.Seconds:D2}";
+            lblTrackEnd1.Text = $"{totalTime.Minutes:D2}:{totalTime.Seconds:D2}";
 
             // Update progress bar
             if (e.Duration > 0)
@@ -92,6 +113,30 @@ namespace Music_AI_Software
             else
             {
                 progressBar1.Value = 0;
+            }
+        }
+
+        /// <summary>
+        /// Updates the player 2 UI with current playback information.
+        /// </summary>
+        /// <param name="e">Event args containing playback position/duration</param>
+        private void UpdatePlaybackUI2(PlaybackProgressEventArgs e)
+        {
+            // Format times as mm:ss
+            TimeSpan currentTime = TimeSpan.FromSeconds(e.CurrentPosition);
+            TimeSpan totalTime = TimeSpan.FromSeconds(e.Duration);
+
+            labelTrackStart2.Text = $"{currentTime.Minutes:D2}:{currentTime.Seconds:D2}";
+            lblTrackEnd2.Text = $"{totalTime.Minutes:D2}:{totalTime.Seconds:D2}";
+
+            // Update progress bar
+            if (e.Duration > 0)
+            {
+                progressBar2.Value = (int)((e.CurrentPosition / e.Duration) * 100);
+            }
+            else
+            {
+                progressBar2.Value = 0;
             }
         }
 
@@ -107,7 +152,8 @@ namespace Music_AI_Software
             sliderVolume1.Value = 50;
             sliderVolume2.Value = 50;
 
-            audioPlayer.SetVolume(sliderVolume1.Value);
+            audioPlayer1.SetVolume(sliderVolume1.Value);
+            audioPlayer2.SetVolume(sliderVolume2.Value);
         }
 
         /// <summary>
@@ -135,13 +181,24 @@ namespace Music_AI_Software
         }
 
         /// <summary>
-        /// Play button handler. Upon click event, the currently loaded song will play.
+        /// Play button handler for player 1
         /// </summary>
-        private void btnPlay_Click(object sender, EventArgs e)
+        private void btnPlay1_Click(object sender, EventArgs e)
         {
             if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
             {
-                audioPlayer.Play(paths[listSongs.SelectedIndex]);
+                audioPlayer1.Play(paths[listSongs.SelectedIndex]);
+            }
+        }
+
+        /// <summary>
+        /// Play button handler for player 2
+        /// </summary>
+        private void btnPlay2_Click(object sender, EventArgs e)
+        {
+            if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
+            {
+                audioPlayer2.Play(paths[listSongs.SelectedIndex]);
             }
         }
 
@@ -152,7 +209,11 @@ namespace Music_AI_Software
 
             panelTrack1.AllowDrop = true;
             panelTrack1.DragEnter += PanelTrack_DragEnter;
-            panelTrack1.DragDrop += PanelTrack_DragDrop;
+            panelTrack1.DragDrop += PanelTrack1_DragDrop;
+
+            panelTrack2.AllowDrop = true;
+            panelTrack2.DragEnter += PanelTrack_DragEnter;
+            panelTrack2.DragDrop += PanelTrack2_DragDrop;
         }
 
         private void ListSongs_MouseDown(object sender, MouseEventArgs e)
@@ -176,7 +237,7 @@ namespace Music_AI_Software
             }
         }
 
-        private void PanelTrack_DragDrop(object sender, DragEventArgs e)
+        private void PanelTrack1_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat))
             {
@@ -184,13 +245,26 @@ namespace Music_AI_Software
 
                 if (int.TryParse(indexStr, out int index) && index >= 0 && index < paths.Length)
                 {
-                    audioPlayer.Play(paths[index]);
+                    audioPlayer1.Play(paths[index]);
+                }
+            }
+        }
+
+        private void PanelTrack2_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                string indexStr = (string)e.Data.GetData(DataFormats.StringFormat);
+
+                if (int.TryParse(indexStr, out int index) && index >= 0 && index < paths.Length)
+                {
+                    audioPlayer2.Play(paths[index]);
                 }
             }
         }
 
         private void UpdateCurrentTrackDisplay(string fileName)
-        { 
+        {
             //TODO
         }
 
@@ -212,7 +286,8 @@ namespace Music_AI_Software
         {
             base.OnFormClosing(e);
 
-            audioPlayer?.Stop();
+            audioPlayer1?.Stop();
+            audioPlayer2?.Stop();
         }
     }
 }
