@@ -35,6 +35,8 @@ namespace Music_AI_Software
 
             sliderVolume1.ValueChanged += SliderVolume1_ValueChanged;
             sliderVolume2.ValueChanged += SliderVolume2_ValueChanged;
+
+            SetupDragAndDrop();
         }
 
         /// <summary>
@@ -143,15 +145,64 @@ namespace Music_AI_Software
             }
         }
 
+        private void SetupDragAndDrop()
+        {
+            listSongs.AllowDrop = true;
+            listSongs.MouseDown += ListSongs_MouseDown;
+
+            panelTrack1.AllowDrop = true;
+            panelTrack1.DragEnter += PanelTrack_DragEnter;
+            panelTrack1.DragDrop += PanelTrack_DragDrop;
+        }
+
+        private void ListSongs_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (listSongs.SelectedIndex != -1)
+            {
+                listSongs.DoDragDrop(listSongs.SelectedIndex.ToString(), DragDropEffects.Copy);
+            }
+        }
+
+        private void PanelTrack_DragEnter(object sender, DragEventArgs e)
+        {
+            // Check if the data being dragged is in an acceptable format
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void PanelTrack_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.StringFormat))
+            {
+                string indexStr = (string)e.Data.GetData(DataFormats.StringFormat);
+
+                if (int.TryParse(indexStr, out int index) && index >= 0 && index < paths.Length)
+                {
+                    audioPlayer.Play(paths[index]);
+                }
+            }
+        }
+
+        private void UpdateCurrentTrackDisplay(string fileName)
+        { 
+            //TODO
+        }
+
         /// <summary>
         /// Handles the song selection change in the playlist.
         /// </summary>
         private void listSongs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
-            {
-                audioPlayer.Play(paths[listSongs.SelectedIndex]);
-            }
+            //if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
+            //{
+            //    audioPlayer.Play(paths[listSongs.SelectedIndex]);
+            //}
         }
 
         /// <summary>

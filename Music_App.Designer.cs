@@ -67,7 +67,11 @@
             sliderLow2 = new TrackBar();
             sliderVolume2 = new TrackBar();
             panelTrack2 = new Panel();
+            pictureTimeline1 = new PictureBox();
+            pictureTimeline2 = new PictureBox();
             menuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackPlayer).BeginInit();
@@ -82,6 +86,8 @@
             ((System.ComponentModel.ISupportInitialize)sliderMid2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sliderLow2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sliderVolume2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -112,7 +118,7 @@
             trackMenuItem.Name = "trackMenuItem";
             trackMenuItem.Size = new Size(107, 22);
             trackMenuItem.Text = "Track";
-            trackMenuItem.Click += this.trackMenuItem_Click;
+            trackMenuItem.Click += trackMenuItem_Click;
             // 
             // folderMenuItem
             // 
@@ -137,6 +143,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSize = true;
+            panel1.Controls.Add(pictureTimeline1);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(1264, 80);
@@ -146,6 +153,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoSize = true;
+            panel2.Controls.Add(pictureTimeline2);
             panel2.Location = new Point(0, 104);
             panel2.Name = "panel2";
             panel2.Size = new Size(1264, 80);
@@ -170,7 +178,7 @@
             listSongs.Name = "listSongs";
             listSongs.Size = new Size(381, 257);
             listSongs.TabIndex = 0;
-            listSongs.SelectedIndexChanged += this.listSongs_SelectedIndexChanged;
+            listSongs.SelectedIndexChanged += listSongs_SelectedIndexChanged;
             // 
             // panel4
             // 
@@ -183,6 +191,7 @@
             // 
             // panelTrack1
             // 
+            panelTrack1.AllowDrop = true;
             panelTrack1.AutoSize = true;
             panelTrack1.Controls.Add(trackPlayer);
             panelTrack1.Controls.Add(panel5);
@@ -248,7 +257,7 @@
             btnPlay.TabIndex = 2;
             btnPlay.Text = "Play";
             btnPlay.UseVisualStyleBackColor = true;
-            btnPlay.Click += this.btnPlay_Click;
+            btnPlay.Click += btnPlay_Click;
             // 
             // panel6
             // 
@@ -424,6 +433,24 @@
             panelTrack2.Size = new Size(550, 206);
             panelTrack2.TabIndex = 8;
             // 
+            // pictureTimeline1
+            // 
+            pictureTimeline1.Dock = DockStyle.Fill;
+            pictureTimeline1.Location = new Point(0, 0);
+            pictureTimeline1.Name = "pictureTimeline1";
+            pictureTimeline1.Size = new Size(1264, 80);
+            pictureTimeline1.TabIndex = 0;
+            pictureTimeline1.TabStop = false;
+            // 
+            // pictureTimeline2
+            // 
+            pictureTimeline2.Dock = DockStyle.Fill;
+            pictureTimeline2.Location = new Point(0, 0);
+            pictureTimeline2.Name = "pictureTimeline2";
+            pictureTimeline2.Size = new Size(1264, 80);
+            pictureTimeline2.TabIndex = 0;
+            pictureTimeline2.TabStop = false;
+            // 
             // Music_App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -444,9 +471,11 @@
             Name = "Music_App";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Music App";
-            Load += this.Music_App_Load;
+            Load += Music_App_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panelTrack1.ResumeLayout(false);
             panelTrack1.PerformLayout();
@@ -465,6 +494,8 @@
             ((System.ComponentModel.ISupportInitialize)sliderMid2).EndInit();
             ((System.ComponentModel.ISupportInitialize)sliderLow2).EndInit();
             ((System.ComponentModel.ISupportInitialize)sliderVolume2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -508,5 +539,7 @@
         private Label label4;
         private Label label5;
         private Panel panelTrack2;
+        private PictureBox pictureTimeline1;
+        private PictureBox pictureTimeline2;
     }
 }
