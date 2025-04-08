@@ -46,6 +46,7 @@
             panelTrack1 = new Panel();
             trackPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             panelTrackControls1 = new Panel();
+            btnPause1 = new Button();
             lblTrackEnd1 = new Label();
             labelTrackStart1 = new Label();
             progressBar1 = new ProgressBar();
@@ -71,6 +72,7 @@
             panelTrack2 = new Panel();
             trackPlayer2 = new AxWMPLib.AxWindowsMediaPlayer();
             panelTrackControls2 = new Panel();
+            btnPause2 = new Button();
             lblTrackEnd2 = new Label();
             labelTrackStart2 = new Label();
             progressBar2 = new ProgressBar();
@@ -240,6 +242,7 @@
             // panelTrackControls1
             // 
             panelTrackControls1.AutoSize = true;
+            panelTrackControls1.Controls.Add(btnPause1);
             panelTrackControls1.Controls.Add(lblTrackEnd1);
             panelTrackControls1.Controls.Add(labelTrackStart1);
             panelTrackControls1.Controls.Add(progressBar1);
@@ -249,6 +252,17 @@
             panelTrackControls1.Name = "panelTrackControls1";
             panelTrackControls1.Size = new Size(550, 59);
             panelTrackControls1.TabIndex = 4;
+            // 
+            // btnPause1
+            // 
+            btnPause1.AutoSize = true;
+            btnPause1.Location = new Point(285, 31);
+            btnPause1.Name = "btnPause1";
+            btnPause1.Size = new Size(75, 25);
+            btnPause1.TabIndex = 6;
+            btnPause1.Text = "Pause";
+            btnPause1.UseVisualStyleBackColor = true;
+            btnPause1.Click += btnPause1_Click;
             // 
             // lblTrackEnd1
             // 
@@ -278,7 +292,7 @@
             // btnPlay1
             // 
             btnPlay1.AutoSize = true;
-            btnPlay1.Location = new Point(234, 31);
+            btnPlay1.Location = new Point(204, 31);
             btnPlay1.Name = "btnPlay1";
             btnPlay1.Size = new Size(75, 25);
             btnPlay1.TabIndex = 2;
@@ -474,6 +488,7 @@
             // panelTrackControls2
             // 
             panelTrackControls2.AutoSize = true;
+            panelTrackControls2.Controls.Add(btnPause2);
             panelTrackControls2.Controls.Add(lblTrackEnd2);
             panelTrackControls2.Controls.Add(labelTrackStart2);
             panelTrackControls2.Controls.Add(progressBar2);
@@ -483,6 +498,17 @@
             panelTrackControls2.Name = "panelTrackControls2";
             panelTrackControls2.Size = new Size(550, 59);
             panelTrackControls2.TabIndex = 6;
+            // 
+            // btnPause2
+            // 
+            btnPause2.AutoSize = true;
+            btnPause2.Location = new Point(263, 31);
+            btnPause2.Name = "btnPause2";
+            btnPause2.Size = new Size(75, 25);
+            btnPause2.TabIndex = 7;
+            btnPause2.Text = "Pause";
+            btnPause2.UseVisualStyleBackColor = true;
+            btnPause2.Click += btnPause2_Click;
             // 
             // lblTrackEnd2
             // 
@@ -512,7 +538,7 @@
             // btnPlay2
             // 
             btnPlay2.AutoSize = true;
-            btnPlay2.Location = new Point(234, 31);
+            btnPlay2.Location = new Point(182, 31);
             btnPlay2.Name = "btnPlay2";
             btnPlay2.Size = new Size(75, 25);
             btnPlay2.TabIndex = 2;
@@ -620,5 +646,7 @@
         private Label labelTrackStart2;
         private ProgressBar progressBar2;
         private Button btnPlay2;
+        private Button btnPause1;
+        private Button btnPause2;
     }
 }

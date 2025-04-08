@@ -43,6 +43,8 @@ namespace Music_AI_Software
 
             btnPlay1.Click += btnPlay1_Click;
             btnPlay2.Click += btnPlay2_Click;
+            btnPause1.Click += btnPause1_Click;
+            btnPause2.Click += btnPause2_Click;
         }
 
         /// <summary>
@@ -181,7 +183,7 @@ namespace Music_AI_Software
         }
 
         /// <summary>
-        /// Play button handler for player 1
+        /// Play button handler for player 1.
         /// </summary>
         private void btnPlay1_Click(object sender, EventArgs e)
         {
@@ -192,7 +194,7 @@ namespace Music_AI_Software
         }
 
         /// <summary>
-        /// Play button handler for player 2
+        /// Play button handler for player 2.
         /// </summary>
         private void btnPlay2_Click(object sender, EventArgs e)
         {
@@ -202,6 +204,29 @@ namespace Music_AI_Software
             }
         }
 
+        /// <summary>
+        /// Pause button handler for player 1.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e"></param>
+        private void btnPause1_Click(object sender, EventArgs e)
+        {
+            audioPlayer1.Pause();
+        }
+
+        /// <summary>
+        /// Pause button handler for player 2
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e"</param>
+        private void btnPause2_Click(object sender, EventArgs e)
+        {
+            audioPlayer2.Pause();
+        }
+
+        /// <summary>
+        /// Sets up drag and drop functionality for the panels.
+        /// </summary>
         private void SetupDragAndDrop()
         {
             listSongs.AllowDrop = true;
@@ -216,6 +241,11 @@ namespace Music_AI_Software
             panelTrack2.DragDrop += PanelTrack2_DragDrop;
         }
 
+        /// <summary>
+        /// Allows for drag and drop functionality on the song list.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e"></param>
         private void ListSongs_MouseDown(object sender, MouseEventArgs e)
         {
             if (listSongs.SelectedIndex != -1)
@@ -224,6 +254,11 @@ namespace Music_AI_Software
             }
         }
 
+        /// <summary>
+        /// Handles the drag enter event for the player panels.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">Drag event arguments.</param>
         private void PanelTrack_DragEnter(object sender, DragEventArgs e)
         {
             // Check if the data being dragged is in an acceptable format
@@ -237,6 +272,11 @@ namespace Music_AI_Software
             }
         }
 
+        /// <summary>
+        /// Handles the drag drop event for player panel 1.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e"></param>
         private void PanelTrack1_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat))
@@ -250,6 +290,11 @@ namespace Music_AI_Software
             }
         }
 
+        /// <summary>
+        /// Handles the drag drop event for player panel 2.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e"></param>
         private void PanelTrack2_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat))
