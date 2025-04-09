@@ -37,9 +37,7 @@
             viewItem = new ToolStripMenuItem();
             fullscreenMenuItem = new ToolStripMenuItem();
             panel1 = new Panel();
-            pictureTimeline1 = new PictureBox();
             panel2 = new Panel();
-            pictureTimeline2 = new PictureBox();
             panel3 = new Panel();
             listSongs = new ListBox();
             panel4 = new Panel();
@@ -78,10 +76,6 @@
             progressBar2 = new ProgressBar();
             btnPlay2 = new Button();
             menuStrip1.SuspendLayout();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).BeginInit();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackPlayer).BeginInit();
@@ -154,39 +148,19 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSize = true;
-            panel1.Controls.Add(pictureTimeline1);
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(1264, 80);
             panel1.TabIndex = 3;
             // 
-            // pictureTimeline1
-            // 
-            pictureTimeline1.Dock = DockStyle.Fill;
-            pictureTimeline1.Location = new Point(0, 0);
-            pictureTimeline1.Name = "pictureTimeline1";
-            pictureTimeline1.Size = new Size(1264, 80);
-            pictureTimeline1.TabIndex = 0;
-            pictureTimeline1.TabStop = false;
-            // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoSize = true;
-            panel2.Controls.Add(pictureTimeline2);
             panel2.Location = new Point(0, 104);
             panel2.Name = "panel2";
             panel2.Size = new Size(1264, 80);
             panel2.TabIndex = 4;
-            // 
-            // pictureTimeline2
-            // 
-            pictureTimeline2.Dock = DockStyle.Fill;
-            pictureTimeline2.Location = new Point(0, 0);
-            pictureTimeline2.Name = "pictureTimeline2";
-            pictureTimeline2.Size = new Size(1264, 80);
-            pictureTimeline2.TabIndex = 0;
-            pictureTimeline2.TabStop = false;
             // 
             // panel3
             // 
@@ -544,6 +518,7 @@
             btnPlay2.TabIndex = 2;
             btnPlay2.Text = "Play";
             btnPlay2.UseVisualStyleBackColor = true;
+            btnPlay2.Click += btnPlay2_Click;
             // 
             // Music_App
             // 
@@ -568,10 +543,6 @@
             Load += Music_App_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline1).EndInit();
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureTimeline2).EndInit();
             panel3.ResumeLayout(false);
             panelTrack1.ResumeLayout(false);
             panelTrack1.PerformLayout();
@@ -638,8 +609,6 @@
         private Label label4;
         private Label label5;
         private Panel panelTrack2;
-        private PictureBox pictureTimeline1;
-        private PictureBox pictureTimeline2;
         private AxWMPLib.AxWindowsMediaPlayer trackPlayer2;
         private Panel panelTrackControls2;
         private Label lblTrackEnd2;

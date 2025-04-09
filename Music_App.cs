@@ -30,8 +30,9 @@ namespace Music_AI_Software
 
             formScaler = new FormScaler(this);
 
-            audioPlayer1 = new WmpAudioPlayer(trackPlayer);
-            audioPlayer2 = new WmpAudioPlayer(trackPlayer2);
+            // Replace WmpAudioPlayer with NAudioPlayer
+            audioPlayer1 = new NAudioPlayer();
+            audioPlayer2 = new NAudioPlayer();
 
             audioPlayer1.PlaybackProgress += AudioPlayer1_PlaybackProgress;
             audioPlayer2.PlaybackProgress += AudioPlayer2_PlaybackProgress;
@@ -207,8 +208,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Pause button handler for player 1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e"></param>
         private void btnPause1_Click(object sender, EventArgs e)
         {
             audioPlayer1.Pause();
@@ -217,8 +216,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Pause button handler for player 2
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e"</param>
         private void btnPause2_Click(object sender, EventArgs e)
         {
             audioPlayer2.Pause();
@@ -244,8 +241,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Allows for drag and drop functionality on the song list.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e"></param>
         private void ListSongs_MouseDown(object sender, MouseEventArgs e)
         {
             if (listSongs.SelectedIndex != -1)
@@ -257,8 +252,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Handles the drag enter event for the player panels.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">Drag event arguments.</param>
         private void PanelTrack_DragEnter(object sender, DragEventArgs e)
         {
             // Check if the data being dragged is in an acceptable format
@@ -275,8 +268,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Handles the drag drop event for player panel 1.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e"></param>
         private void PanelTrack1_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat))
@@ -293,8 +284,6 @@ namespace Music_AI_Software
         /// <summary>
         /// Handles the drag drop event for player panel 2.
         /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e"></param>
         private void PanelTrack2_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.StringFormat))
@@ -325,14 +314,29 @@ namespace Music_AI_Software
         }
 
         /// <summary>
-        /// Handles the form closing event ans ensures proper cleanup.
+        /// Handles the form closing event and ensures proper cleanup.
         /// </summary>
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
 
-            audioPlayer1?.Stop();
-            audioPlayer2?.Stop();
+            if (audioPlayer1 is IDisposable disposable1)
+            {
+                disposable1.Dispose();
+            }
+            else
+            {
+                audioPlayer1?.Stop();
+            }
+
+            if (audioPlayer2 is IDisposable disposable2)
+            {
+                disposable2.Dispose();
+            }
+            else
+            {
+                audioPlayer2?.Stop();
+            }
         }
     }
 }
