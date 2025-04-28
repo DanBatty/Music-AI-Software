@@ -83,6 +83,11 @@ namespace Music_AI_Software
                     Console.WriteLine($"Error analyzing file {filePath}: {ex.Message}");
                 }
             }
+
+            if (trackFeatures.Count > 1)
+            {
+                BuildModel();
+            }
         }
 
         /// <summary>
@@ -119,6 +124,37 @@ namespace Music_AI_Software
             }
 
             return trainingData;
+        }
+
+        /// <summary>
+        /// Builds the ML model based on analysed tracks.
+        /// </summary>
+        private void BuildModel()
+        {
+            var trainingData = CreateTrainingData();
+            if (trainingData.Count == 0) return;
+
+            // Define data preparation pipeline
+            var pipeline = mlContext.Transforms.Concatenate(
+                "Features",
+                nameof(TrackSimilarityInput.BpmDifference))
+                .Append(mlContext.Regression.Trainers.Sdca(
+                    labelColumnName: "Label",
+                    featureColumnName: "Features"));
+
+            // Convert training data to the format expected by ML.NET
+            var mlData = trainingData.Select(pair => new TrackSimilarityData
+            {
+                SourceTrackId = pair.Data.SourceTrackId,
+                CandidateTrackId = pair.Data.CandidateTrackId,
+                BpmDifference = pair.Data.BpmDifference,
+                Label = pair.Label
+            });
+
+            var dataView = mlContext.Data.LoadFromEnumerable(mlData);
+            model = pipeline.Fit(dataView);
+
+            predictionEngine = mlContext.Model.CreatePredictionEngine<TrackSimilarityInput, TrackSimilarityPrediction>(model);
         }
     }
 }
