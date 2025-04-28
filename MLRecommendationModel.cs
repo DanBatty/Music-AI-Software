@@ -156,5 +156,46 @@ namespace Music_AI_Software
 
             predictionEngine = mlContext.Model.CreatePredictionEngine<TrackSimilarityInput, TrackSimilarityPrediction>(model);
         }
+
+        /// <summary>
+        /// Gets recommended tracks similar to the provided track.
+        /// </summary>
+        /// <param name="trackPath">Path to the source track</param>
+        /// <param name="count">Number of recommendations to return</param>
+        /// <returns>List of recommended track file paths in order of similarity</returns>
+        public async Task<List<string>> GetRecommendationsAsync(string trackPath, int count = 5)
+        {
+            if (trackFeatures.Count < 2 || model == null)
+                return new List<string>();
+
+            TrackFeatures sourceTrack = trackFeatures.FirstOrDefault(t => t.FilePath == trackPath);
+            if (sourceTrack == null)
+            {
+                sourceTrack = await musicAnalyser.ExtractFeaturesAsync(trackPath);
+                if (sourceTrack.BPM <= 0)
+                    return new List<string>(); 
+            }
+
+            var predictions = new List<(string FilePath, float Score)>();
+            foreach (var candidateTrack in trackFeatures)
+            {
+                if (candidateTrack.FilePath == trackPath) continue; 
+
+                var input = new TrackSimilarityInput
+                {
+                    SourceTrackId = sourceTrack.FilePath,
+                    CandidateTrackId = candidateTrack.FilePath,
+                    BpmDifference = (float)Math.Abs(sourceTrack.BPM - candidateTrack.BPM)
+                };
+
+                var prediction = predictionEngine.Predict(input);
+                predictions.Add((candidateTrack.FilePath, prediction.Score));
+            }
+            return predictions
+                .OrderByDescending(p => p.Score)
+                .Take(count)
+                .Select(p => p.FilePath)
+                .ToList();
+        }
     }
 }
