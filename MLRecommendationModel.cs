@@ -14,11 +14,13 @@ namespace Music_AI_Software
     public class MLRecommendationModel
     {
         private readonly MLContext mlContext;
+        private ITransformer model;
+        private PredictionEngine<TrackSimilarityInput, TrackSimilarityPrediction> predictionEngine;
         private readonly MusicAnalyser musicAnalyser;
         private List<TrackFeatures> trackFeatures;
 
         /// <summary>
-        /// Initializes a new instance of the recommendation model.
+        /// Initializes a new instance of the recommendation engine.
         /// </summary>
         public MLRecommendationModel()
         {
@@ -56,6 +58,31 @@ namespace Music_AI_Software
         public class TrackSimilarityData : TrackSimilarityInput
         {
             public float Label { get; set; }
+        }
+
+        /// <summary>
+        /// Analyzes a list of music files to extract features for recommendation.
+        /// </summary>
+        /// <param name="filePaths">List of paths to music files</param>
+        public async Task AnalyzeLibraryAsync(IEnumerable<string> filePaths)
+        {
+            trackFeatures.Clear();
+
+            foreach (var filePath in filePaths)
+            {
+                try
+                {
+                    var features = await musicAnalyser.ExtractFeaturesAsync(filePath);
+                    if (features.BPM > 0) // Only add tracks where BPM detection was successful
+                    {
+                        trackFeatures.Add(features);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error analyzing file {filePath}: {ex.Message}");
+                }
+            }
         }
     }
 }
