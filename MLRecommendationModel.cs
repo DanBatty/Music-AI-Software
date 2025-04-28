@@ -73,7 +73,7 @@ namespace Music_AI_Software
                 try
                 {
                     var features = await musicAnalyser.ExtractFeaturesAsync(filePath);
-                    if (features.BPM > 0) // Only add tracks where BPM detection was successful
+                    if (features.BPM > 0)
                     {
                         trackFeatures.Add(features);
                     }
@@ -83,6 +83,42 @@ namespace Music_AI_Software
                     Console.WriteLine($"Error analyzing file {filePath}: {ex.Message}");
                 }
             }
+        }
+
+        /// <summary>
+        /// Creates training data for the ML model based on track similarities.
+        /// </summary>
+        private List<(TrackSimilarityInput Data, float Label)> CreateTrainingData()
+        {
+            var trainingData = new List<(TrackSimilarityInput, float)>();
+
+            // Create comparisons of all tracks in pairs
+            for (int i = 0; i < trackFeatures.Count; i++)
+            {
+                for (int j = 0; j < trackFeatures.Count; j++)
+                {
+                    if (i == j) continue;
+
+                    var sourceTrack = trackFeatures[i];
+                    var candidateTrack = trackFeatures[j];
+
+                    float bpmDifference = (float)Math.Abs(sourceTrack.BPM - candidateTrack.BPM);
+
+                    // Lower BPM difference = higher similarity
+                    float similarityScore = 1.0f - Math.Min(bpmDifference / 40.0f, 1.0f);
+
+                    var input = new TrackSimilarityInput
+                    {
+                        SourceTrackId = sourceTrack.FilePath,
+                        CandidateTrackId = candidateTrack.FilePath,
+                        BpmDifference = bpmDifference
+                    };
+
+                    trainingData.Add((input, similarityScore));
+                }
+            }
+
+            return trainingData;
         }
     }
 }
