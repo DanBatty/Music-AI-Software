@@ -75,6 +75,8 @@
             labelTrackStart2 = new Label();
             progressBar2 = new ProgressBar();
             btnPlay2 = new Button();
+            listRecommendations = new ListBox();
+            refreshBtn = new Button();
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
@@ -166,6 +168,8 @@
             // 
             panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel3.AutoSize = true;
+            panel3.Controls.Add(refreshBtn);
+            panel3.Controls.Add(listRecommendations);
             panel3.Controls.Add(listSongs);
             panel3.Location = new Point(0, 424);
             panel3.Name = "panel3";
@@ -520,6 +524,25 @@
             btnPlay2.UseVisualStyleBackColor = true;
             btnPlay2.Click += btnPlay2_Click;
             // 
+            // listRecommendations
+            // 
+            listRecommendations.Dock = DockStyle.Right;
+            listRecommendations.FormattingEnabled = true;
+            listRecommendations.ItemHeight = 15;
+            listRecommendations.Location = new Point(883, 0);
+            listRecommendations.Name = "listRecommendations";
+            listRecommendations.Size = new Size(381, 257);
+            listRecommendations.TabIndex = 1;
+            // 
+            // refreshBtn
+            // 
+            refreshBtn.Location = new Point(802, 6);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(75, 23);
+            refreshBtn.TabIndex = 2;
+            refreshBtn.Text = "Refresh";
+            refreshBtn.UseVisualStyleBackColor = true;
+            // 
             // Music_App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -617,5 +640,7 @@
         private Button btnPlay2;
         private Button btnPause1;
         private Button btnPause2;
+        private ListBox listRecommendations;
+        private Button refreshBtn;
     }
 }
