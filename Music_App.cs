@@ -1,10 +1,13 @@
-using Music_AI_Software.Interfaces;
-using Music_AI_Software.Players;
-using Music_AI_Software.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Music_AI_Software.Interfaces;
+using Music_AI_Software.Players;
+using Music_AI_Software.UI;
 
 namespace Music_AI_Software
 {
@@ -21,6 +24,8 @@ namespace Music_AI_Software
         private string[] paths;
         private string[] files;
 
+        private MLRecommendationModel recommendationModel;
+
         /// <summary>
         /// Initializes a new instance of the Music_App form.
         /// </summary>
@@ -30,7 +35,6 @@ namespace Music_AI_Software
 
             formScaler = new FormScaler(this);
 
-            // Replace WmpAudioPlayer with NAudioPlayer
             audioPlayer1 = new NAudioPlayer();
             audioPlayer2 = new NAudioPlayer();
 
@@ -46,6 +50,10 @@ namespace Music_AI_Software
             btnPlay2.Click += btnPlay2_Click;
             btnPause1.Click += btnPause1_Click;
             btnPause2.Click += btnPause2_Click;
+
+            recommendationModel = new MLRecommendationModel();
+
+            InitializeRecommendationsUI();
         }
 
         /// <summary>
@@ -144,6 +152,16 @@ namespace Music_AI_Software
         }
 
         /// <summary>
+        /// Handles UI events for the recommendation panel and refersh button.
+        /// </summary>
+        private void InitializeRecommendationsUI()
+        {
+            refreshBtn.Click += RefreshBtn_Click;
+
+            listRecommendations.DoubleClick += ListRecommendations_DoubleClick;
+        }
+
+        /// <summary>
         /// Handles the form load event. Initializes controls and settings.
         /// </summary>
         private void Music_App_Load(object sender, EventArgs e)
@@ -162,7 +180,7 @@ namespace Music_AI_Software
         /// <summary>
         /// Handles the track menu item. Upon click, opens a file dialog where the user can select audio files.
         /// </summary>
-        private void trackMenuItem_Click(object sender, EventArgs e)
+        private async void trackMenuItem_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
             {
@@ -179,6 +197,136 @@ namespace Music_AI_Software
                     {
                         listSongs.Items.Add(files[x]);
                     }
+
+                    await AnalyseLibraryAsync();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Anlayses the loaded music to create the recommendation model.
+        /// </summary>
+        /// <returns></returns>
+        private async Task AnalyseLibraryAsync()
+        {
+            try
+            {
+                // Show wait cursor
+                this.Cursor = Cursors.WaitCursor;
+
+                // Analyze all tracks
+                await recommendationModel.AnalyseLibraryAsync(paths);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error analyzing tracks: {ex.Message}", "Error",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Handles the refresh button click event. Calls the RefreshRecomendationsAsync
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            await RefreshRecommendationsAsync();
+        }
+
+        /// <summary>
+        /// Updates the list of recommendations with the songs from the machine learning model.
+        /// </summary>
+        /// <returns></returns>
+        private async Task RefreshRecommendationsAsync()
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                listRecommendations.Items.Clear();
+
+                string currentTrack = null;
+                if (audioPlayer1.IsPlaying && listSongs.SelectedIndex >= 0)
+                {
+                    currentTrack = paths[listSongs.SelectedIndex];
+                }
+                else if (audioPlayer2.IsPlaying && listSongs.SelectedIndex >= 0)
+                {
+                    currentTrack = paths[listSongs.SelectedIndex];
+                }
+                else if (listSongs.SelectedIndex >= 0)
+                {
+                    currentTrack = paths[listSongs.SelectedIndex];
+                }
+
+                if (currentTrack != null)
+                {
+                    var recommendations = await recommendationModel.GetRecommendationsAsync(currentTrack, 10);
+
+                    foreach (var recommendation in recommendations)
+                    {
+                        string fileName = Path.GetFileName(recommendation);
+                        listRecommendations.Items.Add(fileName);
+                    }
+
+                    if (recommendations.Count == 0)
+                    {
+                        listRecommendations.Items.Add("No recommendations available");
+                    }
+                }
+                else
+                {
+                    listRecommendations.Items.Add("Select a track to get recommendations");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error getting recommendations: {ex.Message}", "Error",
+                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Handles the double click event for the list of recommendations. If empty, song is loaded onto player 1,
+        /// if not it is loaded on player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListRecommendations_DoubleClick(object sender, EventArgs e)
+        {
+            if (listRecommendations.SelectedIndex >= 0)
+            {
+                string selectedItem = listRecommendations.SelectedItem.ToString();
+
+                for (int i = 0; i < files.Length; i++)
+                {
+                    if (files[i] == selectedItem)
+                    {
+                        listSongs.SelectedIndex = i;
+
+                        if (!audioPlayer1.IsPlaying)
+                        {
+                            audioPlayer1.Play(paths[i]);
+                        }
+                        else if (!audioPlayer2.IsPlaying)
+                        {
+                            audioPlayer2.Play(paths[i]);
+                        }
+                        else
+                        {
+                            audioPlayer1.Play(paths[i]);
+                        }
+
+                        break;
+                    }
                 }
             }
         }
@@ -186,22 +334,24 @@ namespace Music_AI_Software
         /// <summary>
         /// Play button handler for player 1.
         /// </summary>
-        private void btnPlay1_Click(object sender, EventArgs e)
+        private async void btnPlay1_Click(object sender, EventArgs e)
         {
             if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
             {
                 audioPlayer1.Play(paths[listSongs.SelectedIndex]);
+                await RefreshRecommendationsAsync();
             }
         }
 
         /// <summary>
         /// Play button handler for player 2.
         /// </summary>
-        private void btnPlay2_Click(object sender, EventArgs e)
+        private async void btnPlay2_Click(object sender, EventArgs e)
         {
             if (listSongs.SelectedIndex >= 0 && paths != null && listSongs.SelectedIndex < paths.Length)
             {
                 audioPlayer2.Play(paths[listSongs.SelectedIndex]);
+                await RefreshRecommendationsAsync();
             }
         }
 

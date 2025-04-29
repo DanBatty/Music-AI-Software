@@ -64,7 +64,7 @@ namespace Music_AI_Software
         /// Analyzes a list of music files to extract features for recommendation.
         /// </summary>
         /// <param name="filePaths">List of paths to music files</param>
-        public async Task AnalyzeLibraryAsync(IEnumerable<string> filePaths)
+        public async Task AnalyseLibraryAsync(IEnumerable<string> filePaths)
         {
             trackFeatures.Clear();
 

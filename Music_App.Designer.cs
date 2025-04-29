@@ -39,6 +39,8 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
+            refreshBtn = new Button();
+            listRecommendations = new ListBox();
             listSongs = new ListBox();
             panel4 = new Panel();
             panelTrack1 = new Panel();
@@ -75,8 +77,7 @@
             labelTrackStart2 = new Label();
             progressBar2 = new ProgressBar();
             btnPlay2 = new Button();
-            listRecommendations = new ListBox();
-            refreshBtn = new Button();
+            lblAnalysis = new Label();
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
@@ -168,6 +169,7 @@
             // 
             panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel3.AutoSize = true;
+            panel3.Controls.Add(lblAnalysis);
             panel3.Controls.Add(refreshBtn);
             panel3.Controls.Add(listRecommendations);
             panel3.Controls.Add(listSongs);
@@ -175,6 +177,25 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1264, 257);
             panel3.TabIndex = 5;
+            // 
+            // refreshBtn
+            // 
+            refreshBtn.Location = new Point(802, 6);
+            refreshBtn.Name = "refreshBtn";
+            refreshBtn.Size = new Size(75, 23);
+            refreshBtn.TabIndex = 2;
+            refreshBtn.Text = "Refresh";
+            refreshBtn.UseVisualStyleBackColor = true;
+            // 
+            // listRecommendations
+            // 
+            listRecommendations.Dock = DockStyle.Right;
+            listRecommendations.FormattingEnabled = true;
+            listRecommendations.ItemHeight = 15;
+            listRecommendations.Location = new Point(883, 0);
+            listRecommendations.Name = "listRecommendations";
+            listRecommendations.Size = new Size(381, 257);
+            listRecommendations.TabIndex = 1;
             // 
             // listSongs
             // 
@@ -524,24 +545,13 @@
             btnPlay2.UseVisualStyleBackColor = true;
             btnPlay2.Click += btnPlay2_Click;
             // 
-            // listRecommendations
+            // lblAnalysis
             // 
-            listRecommendations.Dock = DockStyle.Right;
-            listRecommendations.FormattingEnabled = true;
-            listRecommendations.ItemHeight = 15;
-            listRecommendations.Location = new Point(883, 0);
-            listRecommendations.Name = "listRecommendations";
-            listRecommendations.Size = new Size(381, 257);
-            listRecommendations.TabIndex = 1;
-            // 
-            // refreshBtn
-            // 
-            refreshBtn.Location = new Point(802, 6);
-            refreshBtn.Name = "refreshBtn";
-            refreshBtn.Size = new Size(75, 23);
-            refreshBtn.TabIndex = 2;
-            refreshBtn.Text = "Refresh";
-            refreshBtn.UseVisualStyleBackColor = true;
+            lblAnalysis.AutoSize = true;
+            lblAnalysis.Location = new Point(631, 115);
+            lblAnalysis.Name = "lblAnalysis";
+            lblAnalysis.Size = new Size(0, 15);
+            lblAnalysis.TabIndex = 3;
             // 
             // Music_App
             // 
@@ -567,6 +577,7 @@
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panelTrack1.ResumeLayout(false);
             panelTrack1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackPlayer).EndInit();
@@ -642,5 +653,6 @@
         private Button btnPause2;
         private ListBox listRecommendations;
         private Button refreshBtn;
+        private Label lblAnalysis;
     }
 }
