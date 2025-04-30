@@ -39,6 +39,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             panel3 = new Panel();
+            lblAnalysis = new Label();
             refreshBtn = new Button();
             listRecommendations = new ListBox();
             listSongs = new ListBox();
@@ -77,7 +78,6 @@
             labelTrackStart2 = new Label();
             progressBar2 = new ProgressBar();
             btnPlay2 = new Button();
-            lblAnalysis = new Label();
             menuStrip1.SuspendLayout();
             panel3.SuspendLayout();
             panelTrack1.SuspendLayout();
@@ -100,6 +100,7 @@
             // 
             // menuStrip1
             // 
+            menuStrip1.BackColor = SystemColors.ControlDarkDark;
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileMenuItem, viewItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
@@ -151,6 +152,7 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoSize = true;
+            panel1.BackColor = SystemColors.ControlDarkDark;
             panel1.Location = new Point(0, 24);
             panel1.Name = "panel1";
             panel1.Size = new Size(1264, 80);
@@ -160,6 +162,7 @@
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel2.AutoSize = true;
+            panel2.BackColor = SystemColors.ControlDarkDark;
             panel2.Location = new Point(0, 104);
             panel2.Name = "panel2";
             panel2.Size = new Size(1264, 80);
@@ -169,6 +172,7 @@
             // 
             panel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel3.AutoSize = true;
+            panel3.BackColor = SystemColors.ControlDarkDark;
             panel3.Controls.Add(lblAnalysis);
             panel3.Controls.Add(refreshBtn);
             panel3.Controls.Add(listRecommendations);
@@ -178,17 +182,27 @@
             panel3.Size = new Size(1264, 257);
             panel3.TabIndex = 5;
             // 
+            // lblAnalysis
+            // 
+            lblAnalysis.AutoSize = true;
+            lblAnalysis.Location = new Point(631, 115);
+            lblAnalysis.Name = "lblAnalysis";
+            lblAnalysis.Size = new Size(0, 15);
+            lblAnalysis.TabIndex = 3;
+            // 
             // refreshBtn
             // 
+            refreshBtn.BackColor = Color.CadetBlue;
             refreshBtn.Location = new Point(802, 6);
             refreshBtn.Name = "refreshBtn";
             refreshBtn.Size = new Size(75, 23);
             refreshBtn.TabIndex = 2;
             refreshBtn.Text = "Refresh";
-            refreshBtn.UseVisualStyleBackColor = true;
+            refreshBtn.UseVisualStyleBackColor = false;
             // 
             // listRecommendations
             // 
+            listRecommendations.BackColor = SystemColors.ControlDark;
             listRecommendations.Dock = DockStyle.Right;
             listRecommendations.FormattingEnabled = true;
             listRecommendations.ItemHeight = 15;
@@ -199,6 +213,7 @@
             // 
             // listSongs
             // 
+            listSongs.BackColor = SystemColors.ControlDark;
             listSongs.Dock = DockStyle.Left;
             listSongs.FormattingEnabled = true;
             listSongs.ItemHeight = 15;
@@ -221,6 +236,7 @@
             // 
             panelTrack1.AllowDrop = true;
             panelTrack1.AutoSize = true;
+            panelTrack1.BackColor = SystemColors.ControlDarkDark;
             panelTrack1.Controls.Add(trackPlayer);
             panelTrack1.Controls.Add(panelTrackControls1);
             panelTrack1.Location = new Point(0, 184);
@@ -255,12 +271,13 @@
             // btnPause1
             // 
             btnPause1.AutoSize = true;
+            btnPause1.BackColor = Color.CadetBlue;
             btnPause1.Location = new Point(285, 31);
             btnPause1.Name = "btnPause1";
             btnPause1.Size = new Size(75, 25);
             btnPause1.TabIndex = 6;
             btnPause1.Text = "Pause";
-            btnPause1.UseVisualStyleBackColor = true;
+            btnPause1.UseVisualStyleBackColor = false;
             btnPause1.Click += btnPause1_Click;
             // 
             // lblTrackEnd1
@@ -291,18 +308,20 @@
             // btnPlay1
             // 
             btnPlay1.AutoSize = true;
+            btnPlay1.BackColor = Color.CadetBlue;
             btnPlay1.Location = new Point(204, 31);
             btnPlay1.Name = "btnPlay1";
             btnPlay1.Size = new Size(75, 25);
             btnPlay1.TabIndex = 2;
             btnPlay1.Text = "Play";
-            btnPlay1.UseVisualStyleBackColor = true;
+            btnPlay1.UseVisualStyleBackColor = false;
             btnPlay1.Click += btnPlay1_Click;
             // 
             // panel6
             // 
             panel6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel6.AutoSize = true;
+            panel6.BackColor = SystemColors.ControlDarkDark;
             panel6.Controls.Add(lblLow);
             panel6.Controls.Add(lblMid);
             panel6.Controls.Add(lblHi);
@@ -384,6 +403,7 @@
             // 
             panel7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel7.AutoSize = true;
+            panel7.BackColor = SystemColors.ControlDarkDark;
             panel7.Controls.Add(label2);
             panel7.Controls.Add(label3);
             panel7.Controls.Add(label4);
@@ -467,6 +487,7 @@
             // panelTrack2
             // 
             panelTrack2.AutoSize = true;
+            panelTrack2.BackColor = SystemColors.ControlDarkDark;
             panelTrack2.Controls.Add(trackPlayer2);
             panelTrack2.Controls.Add(panelTrackControls2);
             panelTrack2.Location = new Point(714, 184);
@@ -501,12 +522,13 @@
             // btnPause2
             // 
             btnPause2.AutoSize = true;
+            btnPause2.BackColor = Color.CadetBlue;
             btnPause2.Location = new Point(263, 31);
             btnPause2.Name = "btnPause2";
             btnPause2.Size = new Size(75, 25);
             btnPause2.TabIndex = 7;
             btnPause2.Text = "Pause";
-            btnPause2.UseVisualStyleBackColor = true;
+            btnPause2.UseVisualStyleBackColor = false;
             btnPause2.Click += btnPause2_Click;
             // 
             // lblTrackEnd2
@@ -537,26 +559,20 @@
             // btnPlay2
             // 
             btnPlay2.AutoSize = true;
+            btnPlay2.BackColor = Color.CadetBlue;
             btnPlay2.Location = new Point(182, 31);
             btnPlay2.Name = "btnPlay2";
             btnPlay2.Size = new Size(75, 25);
             btnPlay2.TabIndex = 2;
             btnPlay2.Text = "Play";
-            btnPlay2.UseVisualStyleBackColor = true;
+            btnPlay2.UseVisualStyleBackColor = false;
             btnPlay2.Click += btnPlay2_Click;
-            // 
-            // lblAnalysis
-            // 
-            lblAnalysis.AutoSize = true;
-            lblAnalysis.Location = new Point(631, 115);
-            lblAnalysis.Name = "lblAnalysis";
-            lblAnalysis.Size = new Size(0, 15);
-            lblAnalysis.TabIndex = 3;
             // 
             // Music_App
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlDark;
             ClientSize = new Size(1264, 681);
             Controls.Add(panel7);
             Controls.Add(panel6);
