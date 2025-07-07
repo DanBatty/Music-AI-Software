@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music-AI-Software", "Music-AI-Software.csproj", "{8E1F5371-B54B-4F43-B149-02341C988AB5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music-AI-Software Tests", "..\Music-AI-Software Tests\Music-AI-Software Tests.csproj", "{4F56B167-C641-48C4-9F29-2E5017C4AF5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music-AI-Software", "Music-AI-Software.csproj", "{8E1F5371-B54B-4F43-B149-02341C988AB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{8E1F5371-B54B-4F43-B149-02341C988AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E1F5371-B54B-4F43-B149-02341C988AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E1F5371-B54B-4F43-B149-02341C988AB5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F56B167-C641-48C4-9F29-2E5017C4AF5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F56B167-C641-48C4-9F29-2E5017C4AF5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F56B167-C641-48C4-9F29-2E5017C4AF5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F56B167-C641-48C4-9F29-2E5017C4AF5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
